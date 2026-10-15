@@ -1,0 +1,135 @@
+<recipes>
+  <!-- These are a few example recipes to get started with.
+  Simpler ones on top and a little more complex ones towards the bottom.
+  There is just too many here which would actually annoy in real use.
+  Some are quite silly like overlapping of words in TITLE. Only added to
+  illustrate the potential. Edit file for your use and restart MIP to apply
+  -->
+
+  <recipe name="Decade Lock">
+	  <constraint cond="seed year != 0" cutoff="0">abs(year - seed year) &lt; 10</constraint>
+  </recipe>
+    
+  <recipe name="Use Ratings">
+	  <modifiers>
+	    <modifier weight="2">rating = 5</modifier>
+	    <modifier weight="1.5">rating = 4</modifier>
+      <modifier weight=".5">rating = 2</modifier>
+	  </modifiers>
+	  <constraint max="0">rating = 1</constraint>
+  </recipe>
+
+  <recipe name="Prefer Unplayed Tracks">
+	  <modifiers>
+	    <modifier weight="2">playcount = 0</modifier>
+	  </modifiers>
+  </recipe>
+
+  <recipe name="Minimize Repeated Tracks">
+	  <modifiers>
+	    <modifier weight=".5">lastplayed &gt; now - 7 days</modifier>
+	  </modifiers>
+  </recipe>
+
+  <recipe name="Prefer General Seed Genre">
+	  <modifiers>
+	    <modifier cond="seed genre != 'Miscellaneous'" weight="2">overlap(seed genre, genre) &gt; 0</modifier>
+	  </modifiers>
+  </recipe>
+
+  <recipe name="Prefer Similar Titles">
+	  <modifiers>
+	    <modifier weight="2">overlap(seed title, title) &gt; 0</modifier>
+	  </modifiers>
+ </recipe>
+
+  <recipe name="Balanced">
+    <modifiers>
+      <!-- Rating weights -->
+      <modifier weight="1.5">rating = 2</modifier>
+      <modifier weight="2.3">rating = 3</modifier>
+      <modifier weight="3.4">rating = 4</modifier>
+      <modifier weight="5">rating = 5</modifier>
+      <!-- Recency ladder (exponential 2x per band with a hard 90 day block) -->
+      <modifier weight=".01">lastplayed &gt; now - 90 days</modifier>
+      <modifier weight=".13">lastplayed &gt; now - 190 days and lastplayed &lt;= now - 90 days</modifier>
+      <modifier weight=".20">lastplayed &gt; now - 390 days and lastplayed &lt;= now - 190 days</modifier>
+      <modifier weight=".30">lastplayed &gt; now - 790 days and lastplayed &lt;= now - 390 days</modifier>
+      <modifier weight=".45">lastplayed &gt; now - 1590 days and lastplayed &lt;= now - 790 days</modifier>
+      <modifier weight=".67">lastplayed &gt; now - 3190 days and lastplayed &lt;= now - 1590 days</modifier>
+      <!-- Unplayed boost -->
+      <modifier weight="1.2">lastplayed &lt;= now - 3650 days</modifier>
+      <modifier weight="1.2">playcount = 0</modifier>
+      <!-- Similarity to the seed track -->
+      <modifier cond="seed genre != 'Miscellaneous'" weight="1.5">overlap(seed genre, genre) &gt; 0</modifier>
+      <modifier cond="strlen(seed composer) > 0 and artist != seed artist" weight="1.3">overlap(seed composer, composer) &gt; 0</modifier>
+      <modifier cond="seed year != 0 and artist != seed artist" weight="1.3">abs(year - seed year) &lt; 7</modifier>
+      <modifier cond="seed year != 0" weight="0.77">abs(year - seed year) &gt; 17</modifier>
+      <!-- Optional personal nudges: favour or damp specific artists/genres.
+           Copy, uncomment and edit to taste, e.g.:
+      <modifier weight="0.7">artist = "Some Artist"</modifier>
+      <modifier weight="1.3">genre contains "Some Genre"</modifier>
+      -->
+    </modifiers>
+  </recipe>
+
+  <recipe name="Genre Agnostic">
+    <modifiers>
+      <!-- Rating weights -->
+      <modifier weight="1.5">rating = 2</modifier>
+      <modifier weight="2.3">rating = 3</modifier>
+      <modifier weight="3.4">rating = 4</modifier>
+      <modifier weight="5">rating = 5</modifier>
+      <!-- Recency ladder (exponential 2x per band with a hard 90 day block) -->
+      <modifier weight=".01">lastplayed &gt; now - 90 days</modifier>
+      <modifier weight=".13">lastplayed &gt; now - 190 days and lastplayed &lt;= now - 90 days</modifier>
+      <modifier weight=".20">lastplayed &gt; now - 390 days and lastplayed &lt;= now - 190 days</modifier>
+      <modifier weight=".30">lastplayed &gt; now - 790 days and lastplayed &lt;= now - 390 days</modifier>
+      <modifier weight=".45">lastplayed &gt; now - 1590 days and lastplayed &lt;= now - 790 days</modifier>
+      <modifier weight=".67">lastplayed &gt; now - 3190 days and lastplayed &lt;= now - 1590 days</modifier>
+      <!-- Unplayed boost -->
+      <modifier weight="1.2">lastplayed &lt;= now - 3650 days</modifier>
+      <modifier weight="1.2">playcount = 0</modifier>
+    </modifiers>
+  </recipe>
+
+  <recipe name="Long Ignored">
+    <modifiers>
+      <!-- Rating weights -->
+      <modifier weight="1.5">rating = 2</modifier>
+      <modifier weight="2.3">rating = 3</modifier>
+      <modifier weight="3.4">rating = 4</modifier>
+      <modifier weight="5">rating = 5</modifier>
+      <!-- Recency ladder (exponential 2x per band with a hard 90 day block) -->
+      <modifier weight=".01">lastplayed &gt; now - 90 days</modifier>
+      <modifier weight=".13">lastplayed &gt; now - 190 days and lastplayed &lt;= now - 90 days</modifier>
+      <modifier weight=".20">lastplayed &gt; now - 390 days and lastplayed &lt;= now - 190 days</modifier>
+      <modifier weight=".30">lastplayed &gt; now - 790 days and lastplayed &lt;= now - 390 days</modifier>
+      <modifier weight=".45">lastplayed &gt; now - 1590 days and lastplayed &lt;= now - 790 days</modifier>
+      <modifier weight=".67">lastplayed &gt; now - 3190 days and lastplayed &lt;= now - 1590 days</modifier>
+      <!-- Strong boost for long-unplayed / never-played tracks -->
+      <modifier weight="2.4">lastplayed &lt;= now - 3650 days</modifier>
+      <modifier weight="2.5">playcount = 0</modifier>
+      <!-- Similarity to the seed track -->
+      <modifier cond="seed genre != 'Miscellaneous'" weight="1.5">overlap(seed genre, genre) &gt; 0</modifier>
+      <modifier cond="strlen(seed composer) > 0 and artist != seed artist" weight="1.3">overlap(seed composer, composer) &gt; 0</modifier>
+      <modifier cond="seed year != 0 and artist != seed artist" weight="1.3">abs(year - seed year) &lt; 7</modifier>
+      <modifier cond="seed year != 0" weight="0.77">abs(year - seed year) &gt; 17</modifier>
+    </modifiers>
+  </recipe>
+
+  <recipe name="High Ratings">
+    <constraint max="0">rating = 1</constraint>
+    <modifiers>
+      <!-- Favour higher ratings; excluded 1-star via the constraint above -->
+      <modifier weight=".5">rating = 2</modifier>
+      <modifier weight="1.5">rating = 4</modifier>
+      <modifier weight="2.5">rating = 5</modifier>
+      <!-- Short recency ladder -->
+      <modifier weight=".01">lastplayed &gt; now - 1 days</modifier>
+      <modifier weight=".4">lastplayed &gt; now - 2 days and lastplayed &lt;= now - 1 days</modifier>
+      <modifier weight=".67">lastplayed &gt; now - 5 days and lastplayed &lt;= now - 2 days</modifier>
+      <modifier weight="1">lastplayed &gt; now - 14 days and lastplayed &lt;= now - 5 days</modifier>
+    </modifiers>
+  </recipe>
+</recipes>

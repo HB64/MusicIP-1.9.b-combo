@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>(function(){var st=window.setTimeout;window.setTimeout=function(f){if(typeof f==="string"&&f.indexOf("reload()")>-1)return 0;return st.apply(this,arguments);};})();</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="data:image/png;base64,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">
+<title>MusicIP Headless Server</title>
+<title>Ver. 1.9 beta</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #99CCFF;
+    --bg2: #ffffff;
+    --bg3: #f0eeea;
+    --border: rgba(0,0,0,0.08);
+    --border2: rgba(0,0,0,0.14);
+    --text: #1a1a1e;
+    --text2: #52525e;
+    --text3: #9090a0;
+    --accent: #5b4de0;
+    --accent2: #4a3dcc;
+    --accent-bg: rgba(91,77,224,0.08);
+    --green: #1a8a52;
+    --green-bg: rgba(26,138,82,0.08);
+    --amber: #a06010;
+    --amber-bg: rgba(224,154,47,0.1);
+    --red: #c03030;
+    --red-bg: rgba(192,48,48,0.08);
+    --radius: 10px;
+    --radius-sm: 6px;
+    --font: 'Instrument Sans', system-ui, sans-serif;
+    --mono: 'DM Mono', monospace;
+  }
+
+  body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 0;
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  /* Layout */
+  .shell {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 2rem 1.25rem 4rem;
+  }
+
+  /* Header */
+  header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .logo {
+    width: 42px;
+    height: 42px;
+    border-radius: var(--radius-sm);
+    background: var(--accent-bg);
+    border: 1px solid rgba(124,106,247,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent2);
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  header h1 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--text);
+  }
+  header p {
+    font-size: 0.8rem;
+    color: var(--text3);
+    font-family: var(--mono);
+    margin-top: 1px;
+  }
+  .badge-version {
+    margin-left: auto;
+    font-size: 11px;
+    font-family: var(--mono);
+    color: var(--text3);
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    padding: 3px 8px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+
+  /* Section */
+  .section { margin-bottom: 2rem; }
+  .section-title {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text3);
+    margin-bottom: 0.75rem;
+  }
+
+  /* Stats grid */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 10px;
+    margin-bottom: 1.25rem;
+  }
+  .stat-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1rem;
+  }
+  .stat-label {
+    font-size: 11px;
+    color: var(--text3);
+    margin-bottom: 4px;
+    font-family: var(--mono);
+  }
+  .stat-value {
+    font-size: 1.5rem;
+    font-weight: 600;
+    font-family: var(--mono);
+    color: var(--text);
+  }
+  .stat-value.green { color: var(--green); }
+  .stat-value.amber { color: var(--amber); }
+
+  /* Active status pill */
+  .status-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 0.65rem 1rem;
+    font-size: 13px;
+    color: var(--text2);
+    margin-bottom: 1.25rem;
+  }
+  .status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 0 3px rgba(26,138,82,0.15);
+    flex-shrink: 0;
+  }
+
+  /* Cards */
+  .card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  /* Action rows */
+  .action-list { display: flex; flex-direction: column; }
+  .action-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .action-row:last-child { border-bottom: none; }
+  .action-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+  .action-icon.purple { background: var(--accent-bg); color: var(--accent2); }
+  .action-icon.green  { background: var(--green-bg); color: var(--green); }
+  .action-icon.amber  { background: var(--amber-bg); color: var(--amber); }
+  .action-icon.red    { background: var(--red-bg); color: var(--red); }
+
+  .action-body { flex: 1; min-width: 0; }
+  .action-body label {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+  .action-body input[type="text"] {
+    width: 100%;
+    background: var(--bg3);
+    border: 1px solid var(--border2);
+    border-radius: var(--radius-sm);
+    padding: 6px 10px;
+    font-size: 13px;
+    color: var(--text);
+    font-family: var(--mono);
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .action-body input[type="text"]:focus { border-color: var(--accent); }
+  .action-body input[type="text"]::placeholder { color: var(--text3); }
+
+  .folder-toggle {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--text3);
+    margin-top: 6px;
+    cursor: pointer;
+  }
+  .folder-toggle input[type="checkbox"] { width: 13px; height: 13px; }
+
+  .btn {
+    padding: 7px 14px;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    font-weight: 500;
+    font-family: var(--font);
+    cursor: pointer;
+    border: 1px solid var(--border2);
+    background: var(--bg3);
+    color: var(--text);
+    white-space: nowrap;
+    transition: background 0.12s, border-color 0.12s;
+    flex-shrink: 0;
+  }
+  .btn:hover { background: rgba(255,255,255,0.06); border-color: var(--border2); }
+  .btn:active { transform: scale(0.97); }
+  .btn.primary {
+    background: var(--accent-bg);
+    border-color: rgba(124,106,247,0.35);
+    color: var(--accent2);
+  }
+  .btn.primary:hover { background: rgba(124,106,247,0.2); }
+  .btn.danger {
+    background: var(--red-bg);
+    border-color: rgba(224,85,85,0.3);
+    color: var(--red);
+  }
+
+  /* Validation controls */
+  .val-grid {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 10px;
+    align-items: center;
+  }
+  .cpu-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--text2);
+  }
+  select {
+    background: var(--bg3);
+    border: 1px solid var(--border2);
+    border-radius: var(--radius-sm);
+    padding: 6px 10px;
+    font-size: 13px;
+    color: var(--text);
+    font-family: var(--font);
+    outline: none;
+    cursor: pointer;
+  }
+  select:focus { border-color: var(--accent); }
+
+  .btn-group { display: flex; gap: 8px; flex-wrap: wrap; }
+
+  /* Mix settings */
+  .settings-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    padding: 1rem;
+  }
+  @media (max-width: 520px) {
+    .settings-grid { grid-template-columns: 1fr; }
+  }
+  .field { display: flex; flex-direction: column; gap: 5px; }
+  .field.full { grid-column: 1 / -1; }
+  .field label {
+    font-size: 11px;
+    color: var(--text3);
+    font-family: var(--mono);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .inline-pair { display: flex; gap: 6px; }
+  .inline-pair input[type="text"] {
+    flex: 1;
+    background: var(--bg3);
+    border: 1px solid var(--border2);
+    border-radius: var(--radius-sm);
+    padding: 6px 10px;
+    font-size: 13px;
+    color: var(--text);
+    font-family: var(--mono);
+    outline: none;
+    min-width: 0;
+  }
+  .inline-pair input[type="text"]:focus { border-color: var(--accent); }
+
+  .checkbox-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0.75rem 1rem;
+    border-top: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--text2);
+  }
+  input[type="checkbox"] {
+    width: 15px;
+    height: 15px;
+    accent-color: var(--accent);
+    cursor: pointer;
+  }
+  .card-footer {
+    padding: 0.75rem 1rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  /* Show info buttons grid */
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 8px;
+  }
+  .info-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text2);
+    cursor: pointer;
+    font-family: var(--font);
+    text-align: left;
+    transition: background 0.12s, color 0.12s, border-color 0.12s;
+  }
+  .info-btn:hover { background: var(--bg3); color: var(--text); border-color: var(--border2); }
+  .info-btn .ti { font-size: 16px; color: var(--text3); flex-shrink: 0; }
+
+  /* Song lookup cards */
+  .lookup-list { display: flex; flex-direction: column; gap: 8px; }
+  .lookup-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 0.75rem 1rem;
+  }
+  .lookup-card label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--text3);
+    font-family: var(--mono);
+    margin-bottom: 6px;
+  }
+  .lookup-row {
+    display: flex;
+    gap: 8px;
+  }
+  .lookup-row input[type="text"] {
+    flex: 1;
+    background: var(--bg3);
+    border: 1px solid var(--border2);
+    border-radius: var(--radius-sm);
+    padding: 7px 10px;
+    font-size: 13px;
+    color: var(--text);
+    font-family: var(--mono);
+    outline: none;
+    min-width: 0;
+  }
+  .lookup-row input[type="text"]:focus { border-color: var(--accent); }
+  .lookup-row input[type="text"]::placeholder { color: var(--text3); }
+
+  /* Test mix */
+  .test-mix-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 1rem;
+  }
+  .test-mix-card p { font-size: 13px; color: var(--text2); flex: 1; }
+
+  /* Links */
+  .links-list { display: flex; flex-direction: column; }
+  .link-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border);
+    text-decoration: none;
+  }
+  .link-row:last-child { border-bottom: none; }
+  .link-row:hover { background: var(--bg3); }
+  .link-row i { color: var(--text3); font-size: 16px; margin-top: 1px; flex-shrink: 0; }
+  .link-content a {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--accent2);
+    text-decoration: none;
+    margin-bottom: 2px;
+  }
+  .link-content span { font-size: 12px; color: var(--text3); }
+
+  /* Reload notice */
+  .reload-notice {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--amber-bg);
+    border: 1px solid rgba(224,154,47,0.25);
+    border-radius: var(--radius);
+    padding: 0.75rem 1rem;
+    font-size: 13px;
+    color: var(--amber);
+    margin-bottom: 1.25rem;
+  }
+  .reload-notice .ti { font-size: 18px; flex-shrink: 0; }
+
+  /* Divider */
+  hr { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+
+  @media (max-width: 480px) {
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+    .val-grid { grid-template-columns: 1fr; }
+    .badge-version { display: none; }
+    .test-mix-card { flex-direction: column; align-items: flex-start; }
+  }
+
+
+  /* inline icons (no CDN): sized/colored like the former icon font */
+  .ti { width: 1em; height: 1em; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round;
+    stroke-linejoin: round; vertical-align: -0.125em; flex-shrink: 0; }
+  /* ---- Concept: interactive additions ---- */
+  .toast { position: fixed; bottom: 20px; left: 50%; transform: translate(-50%, 20px); background: var(--text); color: #fff;
+    padding: 9px 16px; border-radius: var(--radius-sm); font-size: 13px; opacity: 0; pointer-events: none;
+    transition: opacity .2s, transform .2s; z-index: 50; max-width: 90vw; }
+  .toast.show { opacity: 1; transform: translate(-50%, 0); }
+  .toast.err { background: var(--red); }
+  .btn.busy { opacity: .55; pointer-events: none; }
+  .status-dot.busy { background: var(--amber); animation: pulse 1s ease-in-out infinite; }
+  @keyframes pulse { 50% { opacity: .35; } }
+  .status-dot.off { background: var(--red); }
+  .stat-value.flash { animation: flash .6s; }
+  @keyframes flash { from { background: var(--accent-bg); } to { background: transparent; } }
+  dialog.result { border: 1px solid var(--border2); border-radius: var(--radius); padding: 0; width: min(900px, 94vw);
+    max-height: 86vh; background: var(--bg2); color: var(--text); font-family: var(--font); }
+  dialog.result::backdrop { background: rgba(0,0,0,.4); }
+  .result-head { display: flex; align-items: center; gap: 10px; padding: 12px 14px; border-bottom: 1px solid var(--border); }
+  .result-head h3 { margin: 0; font-size: 14px; font-weight: 600; flex: 1; }
+  .result-head input { padding: 6px 9px; border: 1px solid var(--border2); border-radius: var(--radius-sm); font-family: var(--font); font-size: 13px; }
+  .result-meta { padding: 6px 14px; font-size: 12px; color: var(--text3); font-family: var(--mono); }
+  .result-body { margin: 0; padding: 4px 14px 14px; overflow: auto; max-height: 64vh; font-family: var(--mono);
+    font-size: 12px; line-height: 1.55; white-space: pre-wrap; word-break: break-all; }
+
+</style>
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+<symbol id="ti-alert-triangle" viewBox="0 0 24 24"><path d="M12 9v4" /> <path d="M10.363 3.591l-8.106 13.534a1.914 1.914 0 0 0 1.636 2.871h16.214a1.914 1.914 0 0 0 1.636 -2.87l-8.106 -13.536a1.914 1.914 0 0 0 -3.274 0z" /> <path d="M12 16h.01" /></symbol>
+<symbol id="ti-chart-bar" viewBox="0 0 24 24"><path d="M3 13a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" /> <path d="M15 9a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" /> <path d="M9 5a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v14a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" /> <path d="M4 20h14" /></symbol>
+<symbol id="ti-clock" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" /> <path d="M12 7v5l3 3" /></symbol>
+<symbol id="ti-copy" viewBox="0 0 24 24"><path d="M7 7m0 2.667a2.667 2.667 0 0 1 2.667 -2.667h8.666a2.667 2.667 0 0 1 2.667 2.667v8.666a2.667 2.667 0 0 1 -2.667 2.667h-8.666a2.667 2.667 0 0 1 -2.667 -2.667z" /> <path d="M4.012 16.737a2.005 2.005 0 0 1 -1.012 -1.737v-10c0 -1.1 .9 -2 2 -2h10c.75 0 1.158 .385 1.5 1" /></symbol>
+<symbol id="ti-cpu" viewBox="0 0 24 24"><path d="M5 5m0 1a1 1 0 0 1 1 -1h12a1 1 0 0 1 1 1v12a1 1 0 0 1 -1 1h-12a1 1 0 0 1 -1 -1z" /> <path d="M9 9h6v6h-6z" /> <path d="M3 10h2" /> <path d="M3 14h2" /> <path d="M10 3v2" /> <path d="M14 3v2" /> <path d="M21 10h-2" /> <path d="M21 14h-2" /> <path d="M14 21v-2" /> <path d="M10 21v-2" /></symbol>
+<symbol id="ti-filter" viewBox="0 0 24 24"><path d="M4 4h16v2.172a2 2 0 0 1 -.586 1.414l-4.414 4.414v7l-6 2v-8.5l-4.48 -4.928a2 2 0 0 1 -.52 -1.345v-2.227z" /></symbol>
+<symbol id="ti-folder-plus" viewBox="0 0 24 24"><path d="M12 19h-7a2 2 0 0 1 -2 -2v-11a2 2 0 0 1 2 -2h4l3 3h7a2 2 0 0 1 2 2v3.5" /> <path d="M16 19h6" /> <path d="M19 16v6" /></symbol>
+<symbol id="ti-microphone" viewBox="0 0 24 24"><path d="M9 2m0 3a3 3 0 0 1 3 -3h0a3 3 0 0 1 3 3v5a3 3 0 0 1 -3 3h0a3 3 0 0 1 -3 -3z" /> <path d="M5 10a7 7 0 0 0 14 0" /> <path d="M8 21l8 0" /> <path d="M12 17l0 4" /></symbol>
+<symbol id="ti-mood-happy" viewBox="0 0 24 24"><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /> <path d="M9 9l.01 0" /> <path d="M15 9l.01 0" /> <path d="M8 13a4 4 0 1 0 8 0h-8" /></symbol>
+<symbol id="ti-music" viewBox="0 0 24 24"><path d="M3 17a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" /> <path d="M13 17a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" /> <path d="M9 17v-13h10v13" /> <path d="M9 8h10" /></symbol>
+<symbol id="ti-player-play" viewBox="0 0 24 24"><path d="M7 4v16l13 -8z" /></symbol>
+<symbol id="ti-player-stop" viewBox="0 0 24 24"><path d="M5 5m0 2a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2z" /></symbol>
+<symbol id="ti-playlist" viewBox="0 0 24 24"><path d="M14 17m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /> <path d="M17 17v-13h4" /> <path d="M13 5h-10" /> <path d="M3 9l10 0" /> <path d="M9 13h-6" /></symbol>
+<symbol id="ti-puzzle" viewBox="0 0 24 24"><path d="M4 7h3a1 1 0 0 0 1 -1v-1a2 2 0 0 1 4 0v1a1 1 0 0 0 1 1h3a1 1 0 0 1 1 1v3a1 1 0 0 0 1 1h1a2 2 0 0 1 0 4h-1a1 1 0 0 0 -1 1v3a1 1 0 0 1 -1 1h-3a1 1 0 0 1 -1 -1v-1a2 2 0 0 0 -4 0v1a1 1 0 0 1 -1 1h-3a1 1 0 0 1 -1 -1v-3a1 1 0 0 1 1 -1h1a2 2 0 0 0 0 -4h-1a1 1 0 0 1 -1 -1v-3a1 1 0 0 1 1 -1" /></symbol>
+<symbol id="ti-refresh" viewBox="0 0 24 24"><path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4" /> <path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4" /></symbol>
+<symbol id="ti-search" viewBox="0 0 24 24"><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /> <path d="M21 21l-6 -6" /></symbol>
+<symbol id="ti-star" viewBox="0 0 24 24"><path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z" /></symbol>
+<symbol id="ti-tag" viewBox="0 0 24 24"><path d="M7.5 7.5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /> <path d="M3 6v5.172a2 2 0 0 0 .586 1.414l7.71 7.71a2.41 2.41 0 0 0 3.408 0l5.592 -5.592a2.41 2.41 0 0 0 0 -3.408l-7.71 -7.71a2 2 0 0 0 -1.414 -.586h-5.172a3 3 0 0 0 -3 3z" /></symbol>
+<symbol id="ti-vinyl" viewBox="0 0 24 24"><path d="M16 3.937a9 9 0 1 0 5 8.063" /> <path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /> <path d="M20 4m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /> <path d="M20 4l-3.5 10l-2.5 2" /></symbol>
+<symbol id="ti-wand" viewBox="0 0 24 24"><path d="M6 21l15 -15l-3 -3l-15 15l3 3" /> <path d="M15 6l3 3" /> <path d="M9 3a2 2 0 0 0 2 2a2 2 0 0 0 -2 2a2 2 0 0 0 -2 -2a2 2 0 0 0 2 -2" /> <path d="M19 13a2 2 0 0 0 2 2a2 2 0 0 0 -2 2a2 2 0 0 0 -2 -2a2 2 0 0 0 2 -2" /></symbol>
+</svg>
+<div class="shell">
+
+  <header>
+    <div class="logo"><img src="data:image/png;base64,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" alt="MusicIP logo" style="width:38px; height:38px;"></div>
+    <div>
+      <h1>MusicIP Headless Server</h1>
+	  <p>Windows ver. 1.9.Beta</p>
+      <p>localhost:10002</p>
+    </div>
+    <span class="badge-version">v1.2 · May 2026</span>
+  </header>
+
+  <!-- Cache -->
+  <div class="section">
+    <div class="section-title">Cache</div>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-label">Total songs</div>
+        <div class="stat-value" id="st-total"><?total?></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Mixable</div>
+        <div class="stat-value green" id="st-mixable"><?mixable?></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">To validate</div>
+        <div class="stat-value amber" id="st-todo"><?todo?></div>
+      </div>
+    </div>
+    <div class="status-row">
+      <span class="status-dot" id="st-dot"></span>
+      <span id="st-active"><?active?></span>
+    </div>
+
+    <!-- Conditional reload notice. The server only emits this block when the cache changed on disk;
+         the script below reads it from the polled page and shows it in #reload-slot. -->
+    <div id="reload-slot"></div>
+    <div id="srv-notice" hidden>
+    <?reloadstart?>
+    <div class="reload-notice">
+      <svg class="ti" aria-hidden="true"><use href="#ti-alert-triangle"/></svg>
+      <span>Cache has been modified on disk.</span>
+      <form action="/server/reload" style="margin-left:auto">
+        <button type="submit" class="btn">Reload cache</button>
+      </form>
+    </div>
+    <?reloadstop?>
+    </div>
+
+    <div class="card">
+      <div class="action-list">
+        <form class="action-row" action="/server/add">
+          <div class="action-icon purple"><svg class="ti" aria-hidden="true"><use href="#ti-folder-plus"/></svg></div>
+          <div class="action-body">
+            <label for="add-root">Add music folder</label>
+            <input type="text" id="add-root" name="root" value="Z:\music" placeholder="Z:\music" style="display:none">
+            <label class="folder-toggle" for="custom-root-cb">
+              <input type="checkbox" id="custom-root-cb">
+              Music folder differs from Z:\music
+            </label>
+          </div>
+          <button type="submit" class="btn primary">Add music</button>
+        </form>
+        <form class="action-row" action="/server/search">
+          <div class="action-icon purple"><svg class="ti" aria-hidden="true"><use href="#ti-search"/></svg></div>
+          <div class="action-body">
+            <label for="search-q">Search songs</label>
+            <input type="text" id="search-q" name="query" placeholder="Artist, title, album…">
+          </div>
+          <button type="submit" class="btn">Search</button>
+        </form>
+        <form class="action-row" action="/server/refresh">
+          <div class="action-icon green"><svg class="ti" aria-hidden="true"><use href="#ti-refresh"/></svg></div>
+          <div class="action-body">
+            <label>Refresh songs</label>
+          </div>
+          <button type="submit" class="btn">Refresh</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Validation -->
+  <div class="section">
+    <div class="section-title">Validation</div>
+    <div class="card" style="padding: 1rem;">
+      <?cpustart?>
+      <form action="/server/updateProcessorUse" style="margin-bottom: 1rem;">
+        <div class="cpu-row">
+          <svg class="ti" aria-hidden="true" style="color: var(--text3); font-size:16px;"><use href="#ti-cpu"/></svg>
+          <span>Processor use</span>
+          <select name="use" onchange="this.form.requestSubmit()"><?cpu?></select>
+          <span style="color: var(--text3); font-size:12px;">affects validation speed</span>
+        </div>
+      </form>
+      <?cpustop?>
+      <form action="/server/validate">
+        <div class="btn-group">
+          <button type="submit" name="action" value="Start Validation" class="btn primary">
+            <svg class="ti" aria-hidden="true"><use href="#ti-player-play"/></svg> Start validation
+          </button>
+          <button type="submit" name="action" value="Stop Validation" class="btn danger">
+            <svg class="ti" aria-hidden="true"><use href="#ti-player-stop"/></svg> Stop validation
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Mix settings -->
+  <div class="section">
+    <div class="section-title">Mix settings</div>
+    <form action="/server/updateMixSettings">
+      <div class="card">
+        <div class="settings-grid">
+          <div class="field">
+            <label for="style-sel">Artist style</label>
+            <select id="style-sel" name="style"><?style?></select>
+          </div>
+          <div class="field">
+            <label for="variety-sel">Variety</label>
+            <select id="variety-sel" name="variety"><?variety?></select>
+          </div>
+          <div class="field">
+            <label>Mix size</label>
+            <div class="inline-pair">
+              <input type="text" name="size" value="<?mixsize?>">
+              <select name="type"><?mixtype?></select>
+            </div>
+          </div>
+          <div class="field">
+            <label>No duplicates within</label>
+            <div class="inline-pair">
+              <input type="text" name="dupsize" value="<?dupsize?>">
+              <select name="duptype"><?duptype?></select>
+            </div>
+          </div>
+        </div>
+        <div class="checkbox-row">
+          <input name="seed" <?seed?> type="checkbox" id="seed-cb">
+          <label for="seed-cb">Always include seed songs in mix</label>
+        </div>
+        <div class="card-footer">
+          <button type="submit" class="btn primary">Save settings</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <!-- Test mix -->
+  <div class="section">
+    <div class="section-title">Test mix</div>
+    <form action="/api/mix?song=&size=12&sizeType=tracks&content=text">
+      <div class="card">
+        <div class="test-mix-card">
+          <svg class="ti" aria-hidden="true" style="font-size:24px; color: var(--accent2);"><use href="#ti-wand"/></svg>
+          <p>Create a generic mix to verify MusicIP is working correctly.</p>
+          <button type="submit" class="btn primary">Test mix</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <hr>
+
+  <!-- Show information -->
+  <div class="section">
+    <div class="section-title">Browse library</div>
+    <div class="info-grid">
+      <form action="/api/duplicates"><button class="info-btn" type="submit"><svg class="ti" aria-hidden="true"><use href="#ti-copy"/></svg> Duplicates</button></form>
+      <form action="/api/filters"><button class="info-btn" type="submit"><svg class="ti" aria-hidden="true"><use href="#ti-filter"/></svg> Filters</button></form>
+      <form action="/api/playlists"><button class="info-btn" type="submit"><svg class="ti" aria-hidden="true"><use href="#ti-playlist"/></svg> Playlists</button></form>
+      <form action="/api/moods"><button class="info-btn" type="submit"><svg class="ti" aria-hidden="true"><use href="#ti-mood-happy"/></svg> Moods</button></form>
+      <form action="/api/albums"><button class="info-btn" type="submit"><svg class="ti" aria-hidden="true"><use href="#ti-vinyl"/></svg> Albums</button></form>
+      <form action="/api/artists"><button class="info-btn" type="submit"><svg class="ti" aria-hidden="true"><use href="#ti-microphone"/></svg> Artists</button></form>
+      <form action="/api/genres"><button class="info-btn" type="submit"><svg class="ti" aria-hidden="true"><use href="#ti-tag"/></svg> Genres</button></form>
+      <form action="/api/songs"><button class="info-btn" type="submit"><svg class="ti" aria-hidden="true"><use href="#ti-music"/></svg> Songs</button></form>
+	  <form action="/api/recipes"><button class="info-btn" type="submit"><svg class="ti" aria-hidden="true"><use href="#ti-puzzle"/></svg> Recipes</button></form>
+    </div>
+  </div>
+
+  <!-- Song lookup -->
+  <div class="section">
+    <div class="section-title">Song lookup</div>
+    <div class="lookup-list">
+      <div class="lookup-card">
+        <label><svg class="ti" aria-hidden="true"><use href="#ti-star"/></svg> Rating</label>
+        <form class="lookup-row" action="/api/getRating">
+          <input type="text" name="song" placeholder="Paste song path from Show Songs…">
+          <button type="submit" class="btn">Look up</button>
+        </form>
+      </div>
+      <div class="lookup-card">
+        <label><svg class="ti" aria-hidden="true"><use href="#ti-chart-bar"/></svg> Play count</label>
+        <form class="lookup-row" action="/api/getPlayCount">
+          <input type="text" name="song" placeholder="Paste song path from Show Songs…">
+          <button type="submit" class="btn">Look up</button>
+        </form>
+      </div>
+      <div class="lookup-card">
+        <label><svg class="ti" aria-hidden="true"><use href="#ti-clock"/></svg> Last played</label>
+        <form class="lookup-row" action="/api/getLastPlayed">
+          <input type="text" name="song" placeholder="Paste song path from Show Songs…">
+          <button type="submit" class="btn">Look up</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<dialog class="result" id="result">
+  <div class="result-head">
+    <h3 id="result-title">Result</h3>
+    <input type="search" id="result-filter" placeholder="Filter…" aria-label="Filter results">
+    <button type="button" class="btn" id="result-copy">Copy</button>
+    <button type="button" class="btn" id="result-close">Close</button>
+  </div>
+  <div class="result-meta" id="result-meta"></div>
+  <pre class="result-body" id="result-body"></pre>
+</dialog>
+
+<script>
+(() => {
+  'use strict';
+  const $ = (s, r = document) => r.querySelector(s);
+  const toastEl = $('#toast'), dlg = $('#result');
+  let toastTimer, lines = [], polling = false;
+
+  function toast(msg, err = false) {
+    toastEl.textContent = msg;
+    toastEl.classList.toggle('err', err);
+    toastEl.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toastEl.classList.remove('show'), 3200);
+  }
+
+  /* ---------- live status ---------- */
+  function setStat(id, val) {
+    const el = $(id); val = (val || '').trim();
+    if (el && val && el.textContent.trim() !== val) {
+      el.textContent = val; el.classList.remove('flash'); void el.offsetWidth; el.classList.add('flash');
+    }
+  }
+  function renderReload(doc) {
+    const notice = doc.querySelector('.reload-notice');
+    const slot = $('#reload-slot');
+    if (notice && !slot.firstElementChild) slot.innerHTML = notice.outerHTML;
+    else if (!notice) slot.innerHTML = '';
+  }
+  let refreshMixerAfter = false, pending = false, pendingUntil = 0, pendingMin = 0, lastStats = '', stable = 0, serverBusy = false, timer;
+  function cleanActive(el) {                       // server text contains a reload <script> and a [Cancel] link
+    if (!el) return { text: '', cancel: false };
+    const c = el.cloneNode(true);
+    c.querySelectorAll('script, style').forEach(n => n.remove());
+    const cancel = !!c.querySelector('a[href*="/server/cancel"]');
+    c.querySelectorAll('a').forEach(a => a.remove());
+    const text = c.textContent.replace(/<!--[\s\S]*?-->/g, '').replace(/\s+/g, ' ').trim();
+    return { text, cancel };
+  }
+  function setActive(a, stats) {
+    const act = a.text;
+    serverBusy = act.length > 0;
+    if (pending) {
+      stable = (stats === lastStats && !serverBusy) ? stable + 1 : 0;
+      lastStats = stats;
+      if (Date.now() > pendingMin && (stable >= 3 || Date.now() > pendingUntil)) { pending = false; toast('Done'); if (refreshMixerAfter) { refreshMixerAfter = false; refreshMixer(); } }
+    }
+    $('#st-dot').classList.remove('off');
+    $('#st-dot').classList.toggle('busy', serverBusy || pending);
+    const box = $('#st-active');
+    box.textContent = serverBusy ? act : (pending ? 'Working\u2026' : 'Idle');
+  }
+  function refreshMixer() {                        // combined image only: sidecar on :8199 restarts the Mixer; silent if absent
+    fetch(location.protocol + '//' + location.hostname + ':8199/refresh', { mode: 'no-cors', cache: 'no-store' })
+      .then(() => toast('Mixer refresh started')).catch(() => {});
+  }
+  function startPending(refreshMixerWhenDone) {
+    refreshMixerAfter = !!refreshMixerWhenDone;
+    pending = true; stable = 0; lastStats = '';
+    pendingMin = Date.now() + 4500; pendingUntil = Date.now() + 90000;
+    $('#st-dot').classList.add('busy'); $('#st-active').textContent = 'Working\u2026';
+    schedule(true);
+  }
+  async function poll() {
+    if (polling) return; polling = true;
+    try {
+      const r = await fetch('/server', { cache: 'no-store' });
+      if (!r.ok) throw new Error(r.status);
+      const doc = new DOMParser().parseFromString(await r.text(), 'text/html');
+      const ids = ['#st-total', '#st-mixable', '#st-todo'];
+      ids.forEach(id => setStat(id, doc.querySelector(id)?.textContent));
+      const stats = ids.map(id => (doc.querySelector(id)?.textContent || '').trim()).join('|');
+      setActive(cleanActive(doc.querySelector('#st-active')), stats);
+      renderReload(doc.querySelector('#srv-notice') || doc);
+    } catch (e) {
+      $('#st-dot').classList.remove('busy'); $('#st-dot').classList.add('off');
+      $('#st-active').textContent = 'No answer from MusicIP';
+    } finally { polling = false; }
+  }
+  function schedule(now) {
+    clearTimeout(timer);
+    const tick = async () => {
+      if (!document.hidden) await poll();
+      timer = setTimeout(tick, (pending || serverBusy) ? 1500 : 5000);
+    };
+    timer = setTimeout(tick, now ? 700 : 0);
+  }
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) poll(); });
+
+  /* ---------- forms ---------- */
+  function buildUrl(form, submitter) {
+    const u = new URL(form.getAttribute('action'), location.href);
+    new FormData(form).forEach((v, k) => u.searchParams.set(k, v));
+    if (submitter && submitter.name) u.searchParams.set(submitter.name, submitter.value);
+    return u;
+  }
+  function showResult(title, text) {
+    $('#result-title').textContent = title;
+    lines = text.split(/\r?\n/).filter(l => l.length);
+    $('#result-filter').value = '';
+    renderLines();
+    if (!dlg.open) dlg.showModal();
+  }
+  function renderLines() {
+    const q = $('#result-filter').value.toLowerCase();
+    const shown = q ? lines.filter(l => l.toLowerCase().includes(q)) : lines;
+    $('#result-meta').textContent = shown.length + (q ? ' of ' + lines.length : '') + ' lines';
+    $('#result-body').textContent = shown.join('\n');
+  }
+  $('#result-filter').addEventListener('input', renderLines);
+  $('#result-close').addEventListener('click', () => dlg.close());
+  dlg.addEventListener('click', (e) => {          // click outside the popup closes it
+    const r = dlg.getBoundingClientRect();
+    if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) dlg.close();
+  });
+  $('#result-copy').addEventListener('click', async () => {
+    try { await navigator.clipboard.writeText($('#result-body').textContent); toast('Copied'); }
+    catch { toast('Copy not available here', true); }
+  });
+
+  document.addEventListener('submit', async (e) => {
+    const form = e.target.closest('form');
+    if (!form || !form.getAttribute('action')) return;
+    const action = form.getAttribute('action');
+    if (!action.startsWith('/server/') && !action.startsWith('/api/')) return;
+    e.preventDefault();
+    const btn = e.submitter || form.querySelector('button');
+    const url = buildUrl(form, e.submitter);
+    if (url.pathname === '/api/mix') {            // test mix follows the Mix size fields, not the fixed 12
+      const n = $('input[name="size"]')?.value.trim(), t = $('select[name="type"]')?.value;
+      if (n) url.searchParams.set('size', n);
+      if (t) url.searchParams.set('sizeType', t);
+    }
+    btn && btn.classList.add('busy');
+    try {
+      const r = await fetch(url, { cache: 'no-store' });
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      if (url.pathname === '/server/search') {       // search returns an HTML page: show its text in the popup
+        const doc = new DOMParser().parseFromString(await r.text(), 'text/html');
+        doc.querySelectorAll('br, p, tr, li, div, h1, h2, h3, h4').forEach(n => n.append('\n'));
+        const text = (doc.body ? doc.body.textContent : '').replace(/[ \t]+\n/g, '\n').replace(/\n{2,}/g, '\n').trim();
+        showResult('Search: ' + (url.searchParams.get('query') || ''), text || '(no results)');
+      } else if (action.startsWith('/api/')) {
+        const text = await r.text();
+        showResult(url.pathname + (url.search ? url.search : ''), text.trim() ? text : '(MusicIP returned nothing)');
+      } else {
+        const label = (btn && btn.textContent.trim()) || url.pathname.split('/').pop();
+        toast(label + ' sent');
+        startPending(['/server/add', '/server/refresh', '/server/reload'].includes(url.pathname));
+      }
+    } catch (err) {
+      toast('Failed: ' + err.message, true);
+    } finally { btn && btn.classList.remove('busy'); }
+  });
+
+  schedule();
+})();
+</script>
+<script>
+  (function () {
+    var cb = document.getElementById('custom-root-cb');
+    var input = document.getElementById('add-root');
+    var KEY = 'mip-add-root';
+    function save() {
+      try { localStorage.setItem(KEY, cb.checked ? input.value : ''); } catch (e) {}
+    }
+    cb.addEventListener('change', function () {
+      if (this.checked) {
+        input.style.display = 'block';
+        input.value = '';
+        input.focus();
+      } else {
+        input.style.display = 'none';
+        input.value = 'Z:\\music';
+      }
+      save();
+    });
+    input.addEventListener('input', save);
+    try {
+      var saved = localStorage.getItem(KEY);
+      if (saved) {
+        cb.checked = true;
+        input.style.display = 'block';
+        input.value = saved;
+      }
+    } catch (e) {}
+  })();
+</script>
+</body>
+</html>

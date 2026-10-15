@@ -1,0 +1,33 @@
+.ruled_box {
+	border: thin solid #5A9EC2;
+	padding: 4px;
+	height: 99%;
+	border-left-color: #5A9EC2;
+	border-bottom-color: #5A9EC2;
+	border-color: #5A9EC2;
+	border-right-color: #5A9EC2;
+	border-top-color: #5A9EC2;
+}
+.headliner {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	line-height: 16pt;
+	font-weight: bolder;
+	color: #5A9EC2;
+}
+.bodycopy {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-style: normal;
+	line-height: 14pt;
+	color: #333333;
+	link color:#FF6600
+}
+.subHeading {
+
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	line-height: 16pt;
+	font-weight: bolder;
+	color: #5A9EC2;
+}

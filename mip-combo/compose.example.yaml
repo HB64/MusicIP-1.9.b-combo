@@ -1,0 +1,20 @@
+# Example. Adjust the host paths (music and the persist folder) to your system.
+services:
+  mip:
+    image: ghcr.io/OWNER/mip-combo:latest     # or: build: .
+    container_name: mip
+    restart: unless-stopped
+    stop_grace_period: 90s
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Amsterdam
+    ports:
+      - "10002:10002"   # Mixer API (Power Search, mixes)
+      - "10003:10003"   # Server (Add music, Refresh, Reload cache)
+      - "8989:8989"     # noVNC
+      - "8199:8199"     # refresh service
+    volumes:
+      - /path/to/music:/music
+      # Persist folder (holds default.m3lib, settings, recipes)
+      - /path/to/mip-data:/home/mip/.wine/drive_c/users/mip/AppData/Roaming/MusicIP/MusicIP Mixer

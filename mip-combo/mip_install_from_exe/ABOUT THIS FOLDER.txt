@@ -1,0 +1,66 @@
+http://<host>:8989/vnc.html shows MusicIP window. Use it as you would on a PC.
+
+MIP PREFERENCES
+Change them to suit yourself. "Don't Include Songs Like This in Mixes" deserves careful thought: it applies to every mix. Set it up as a foundational filter. Power searches sent from other programs like Lyrion are sent over the HTTP API as a filter. One cannot add another MIP filter to it. So best to remove tracks you never want to include in the exclusions here.
+
+mip.m3usr holds MIP preferences. Delete it with the container stopped and restart to get default settings back.
+
+EDITABLE FILES
+Yours, and editable with the container stopped:
+    recipes.xml      your recipes.  Changes need a restart
+    powerwords.txt   your powerwords
+    Moods/           your moods, as .m3u playlists
+
+
+Not yours:
+    default.m3lib    the library and all the analysis.  Never edit or delete
+    register.key     without it, Power Search is dead
+    log.txt          MusicIP's own log, emptied when it grows too large
+    djs/             a dead MusicIP feature.  Remade at every start; no switch
+                     stops it
+
+Nothing you leave here is ever deleted by the image. Anything it does not
+recognise is simply named once in the container log, so you can decide.
+
+
+
+
+
+NEW MUSIC
+Files copied into the music folder are picked up on their own, usually within
+minutes. Fingerprints already saved inside the files make analysis much
+faster. This container does analyse files, but it cannot archive the analysis
+back into the music files - only into its own cache.
+
+
+MIXES
+A mix plays on a Lyrion player, and File > Save As Playlist writes a playlist
+file you can keep.
+
+
+CACHE SNAPSHOTS
+    cache-backups/
+The library is only written to disk when something asks MusicIP to save it,
+which normally happens once a night, at the end of Lyrion's export. When that
+happens the container waits for the file to settle and takes a copy here,
+named for the date and time of that save. Copies older than seven days are
+deleted; one pinned copy is kept for ever. To restore one, stop the container,
+copy it over default.m3lib, and start again.
+
+This exists for one reason: so that losing the cache never costs you a
+re-analysis of the whole library.
+
+
+STOPPING
+The library is only written when MusicIP is asked to save it:
+    curl http://localhost:10002/api/flush
+then
+    docker compose stop mip
+Never a plain "docker stop" - that kills it in ten seconds.
+
+
+IF IT MISBEHAVES
+Stuck window:
+    docker exec mip pkill -f MusicMagicMixer
+It comes back about ten seconds later and the container stays up.
+Otherwise restart the container, or the host. Nothing a flush saved is lost.

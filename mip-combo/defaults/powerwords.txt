@@ -1,0 +1,25 @@
+artwork=hasimage
+excluding=without
+protected=drm
+unrated: rating=0
+rated: rating != 0
+crappy: bps < 96
+recent: added > now - 7 days
+favorite: rating > 3
+rap: genre contains "rap"
+country: genre contains "country"
+rock: genre contains "rock"
+classical: genre contains "classical"
+christmas: title contains "jingle" or title contains "christmas"
+tiny: bytes < 1000000
+dead: status contains "unanalyzable"
+mixable: status startswith "analyzed" or status contains "identified"
+unmixable: !mixable
+old: year < 1950 and year != 0
+fifties: year >= 1950 and year < 1960
+sixties: year >= 1960 and year < 1970
+seventies: year >= 1970 and year < 1980
+eighties: year >= 1980 and year < 1990
+nineties: year >= 1990 and year < 2000
+mp3: file endswith ".mp3"
+wma: file endswith ".wma"

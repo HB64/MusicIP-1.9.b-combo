@@ -1,0 +1,86 @@
+ABOUT THIS FOLDER - MusicIP Mixer, running in a container
+
+This is MusicIP's own settings folder, seen from outside the container. This
+file is rewritten by the image every time the container starts. Files
+irrelevant to the container are not deleted by the image. Anything it does not
+recognise is simply named once in the container log, so you can decide.
+
+
+THE WINDOW
+    http://<host>:8989/vnc.html
+It is ordinary MusicIP with its ordinary window. Use it as you would on a PC.
+It sometimes draws only half of itself; move or scroll it and it repaints.
+
+
+EDITABLE FILES
+Container will provide these default files but won't overwrite your edits or
+presupplied files.
+    recipes.xml      your recipes.  Changes need a restart
+    powerwords.txt   your powerwords
+    Moods/           your moods, Add as .m3u playlists made anywhere with paths
+                     matching the container's, Z:\music
+    default.m3lib    Built once the libray has picked the music. the library
+                     database, analysis and filters
+    register.key     Without this, Power Search is dead
+
+CONTAINER CONTROLLED
+These files are not for direct user editing except for cache restoration from
+backups.
+    log.txt          MusicIP's own log, emptied when it grows too large
+    djs/             a dead MusicIP feature.  Remade at every start; no switch
+                     stops it
+    cache-backups/   Contains backups of cache for 7 days. Saved every time
+                     cache is written to disk which happens only through
+                     external command like a Lyrion data export or when you
+                     manually save the library or exit the application in the
+                     noVNC window. If you set up a nightly automatic data
+                     export from Lyrion, that will end with writing cache to
+                     the disk, which will automatically save a fresh copy.
+                     These backups will save time on analysis if the cache file
+                     ever gets corrupted. To restore a problem cache, replace
+                     default.m3lib with one of these renamed with the container
+                     stopped. One pinned copy is kept for ever, only updated
+                     when deleted and replaced at next snapshot.
+    mip.m3usr        MIP preferences. Delete it to reset all MIP settings to
+                     container defaults
+
+
+PREFERENCES
+Already set for efficient use with Lyrion. Change them to suit yourself. "Don't
+Include Songs Like This in Mixes" deserves careful thought. Power searches are
+sent as a Filter over the API. Filters set within MIP cannot be combined in the
+same command. If you want to use Power Search, this is the best place to insert
+a foundational "filter" to keep all undesirable files out. This will be applied
+to every mix, from every program, and no filter can override it. To get
+container default preferences back delete mip.m3usr which holds your settings
+and restart.
+
+NEW MUSIC
+Files copied into the music folder are picked up on their own, usually within
+minutes. Fingerprints already saved inside the files make analysis much faster.
+This container does analyse files, but it cannot archive the analysis back into
+the music files - only into the cache.
+
+
+MIXES
+A mix plays on a Lyrion player random (no way to select a specific player), and
+File > Save As Playlist writes a playlist file you can keep.
+
+NETWORKING
+HTTP API requests can be met over bridge networking but pushing a mix to Lyrion
+as above is only possible with host networking over port 9090
+
+
+STOPPING
+The library is only written when MusicIP is asked to save it:
+    curl http://localhost:10002/api/flush
+then
+    docker compose stop mip
+Never a plain "docker stop" - that kills it in ten seconds.
+
+
+IF IT MISBEHAVES
+Stuck window:
+    docker exec mip pkill -f MusicMagicMixer
+It comes back about ten seconds later and the container stays up. Otherwise
+restart the container, or the host. Nothing a flush saved is lost.
