@@ -1,0 +1,4 @@
+# local test data, never commit
+default.m3lib*
+*.log
+__pycache__/
