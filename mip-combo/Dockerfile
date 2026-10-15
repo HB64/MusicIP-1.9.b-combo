@@ -77,6 +77,9 @@ RUN sed -i 's/\r$//' /home/mip/start-display.sh /home/mip/refresh.py /usr/local/
  && chmod 0755 /home/mip/start-display.sh /home/mip/refresh.py /usr/local/bin/entrypoint.sh \
  && chown 1000:1000 /home/mip/start-display.sh /home/mip/refresh.py
 
+# noVNC start page: port 8989 connects to the Mixer screen right away
+RUN printf '%s\n' '<!DOCTYPE html><meta charset="utf-8"><meta http-equiv="refresh" content="0; url=vnc.html?autoconnect=true&resize=scale">' > /usr/share/novnc/index.html
+
 # 10002 Mixer API, 10003 Server (Add music UI), 8989 noVNC, 8199 refresh service
 EXPOSE 10002 10003 8989 8199
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
