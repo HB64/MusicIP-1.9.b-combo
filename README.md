@@ -44,8 +44,6 @@ services:
 
 `stop_grace_period: 90s` gives the Server time to save the library on a normal stop.
 
-> **Security:** the noVNC screen on port `8989` has no password, and the Mixer, Server and refresh service (`10002`, `10003`, `8199`) have no login either. Only expose these ports on your own network, never to the internet.
-
 Check that it is up:
 
 ```bash
@@ -154,6 +152,8 @@ Optional environment variables for the refresh service:
 
 **Music folder not found / "Add music folder" fails** — Confirm the container-side path in your volume mount matches what you enter on the Server page (see "Music path inside MusicIP" above). They must point to the same folder.
 
+**Rating / play count export reports errors for some tracks** — MusicIP 1.9.b does not handle non-ASCII characters in file paths (for example `ö`, `é`, `²`, `’` or Japanese names). For those tracks the Mixer answers but refuses to set Rating, PlayCount and LastPlayed, so an export from Lyrion ends with "Export finished with errors". Tracks with plain ASCII paths are not affected. This comes from MusicIP itself, not from this image; renaming files or fixing tags only helps sporadically.
+
 ### ⚠️ MusicIP 1.9.b filter behaviour — stricter than 1.8
 
 MusicIP 1.9.b enforces stricter rules for filter conditions than 1.8. Filters that worked in 1.8 can silently fail in 1.9.b with `MUSICIP RETURNED NOTHING`. **Review all your filters in the MusicIP Mixer GUI after migrating from 1.8.**
@@ -178,7 +178,7 @@ curl --get "http://localhost:10002/api/mix" \
 
 ## Credits
 
-The Mixer part of this image is based on the work of **saysaar**: the Docker image [`saysaar/musicip-mixer-1.9`](https://hub.docker.com/r/saysaar/musicip-mixer-1.9) (MusicIP Mixer 1.96b under Wine). The Dockerfile here was reconstructed from that image's build history, and these files come from it (some adjusted): `entrypoint.sh`, `start-display.sh`, the `defaults` folder and the layout of the MusicIP install. Many thanks for the groundwork.
+The Mixer part of this image is based on the work of **saysaar**: the Docker image `saysaar/musicip-mixer-1.9`. The Dockerfile here was reconstructed from that image's build history, and these files come from it (some adjusted): `entrypoint.sh`, `start-display.sh`, the `defaults` folder and the layout of the MusicIP install. Many thanks for the groundwork.
 
 Added on top of it: the MusicIP Server on its own port (patched `MusicMagicServer.exe` with the higher mix limits, and a custom `index.html`), `refresh.py` (the refresh service and file watcher) and the combined setup.
 
