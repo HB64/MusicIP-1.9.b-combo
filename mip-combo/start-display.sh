@@ -239,23 +239,23 @@ echo "[$(ts)] watchdog on — restarts the Mixer after ${WATCHDOG_FAILS} missed 
 # a NEW TIMESTAMP on that file is the moment worth copying.
 #
 # The rule, and it is the whole rule: the timestamp changed, it has been still
-# for SNAP_SETTLE seconds, so copy it.  Then delete copies older than SNAP_DAYS.
+# for SNAP_SETTLE seconds, so copy it.  Then keep only the newest SNAP_KEEP copies.
 # One copy is pinned at the start and never swept, so a run of bad ones cannot
 # leave you with nothing.  Only files matching the name this loop writes are
 # ever deleted.
 #
 #   SNAP_ENABLE=0     turn it off
-#   SNAP_DAYS=7       delete dated copies older than this many days
+#   SNAP_KEEP=5       number of dated copies to keep (oldest are deleted)
 #   SNAP_SETTLE=300   seconds the file must be unchanged before copying
 SNAP_ENABLE="${SNAP_ENABLE:-1}"
-SNAP_DAYS="${SNAP_DAYS:-7}"
+SNAP_KEEP="${SNAP_KEEP:-5}"
 SNAP_SETTLE="${SNAP_SETTLE:-300}"
 ROAMING="/home/mip/.wine/drive_c/users/mip/AppData/Roaming/MusicIP/MusicIP Mixer"
 CACHE="$ROAMING/default.m3lib"
 SNAPDIR="$ROAMING/cache-backups"
 
 if [ "$SNAP_ENABLE" = "1" ]; then
-echo "[$(ts)] cache snapshots on — a copy after every flush, kept ${SNAP_DAYS} days, in cache-backups/"
+echo "[$(ts)] cache snapshots on — a copy after every flush, newest ${SNAP_KEEP} kept, in cache-backups/"
 (
   trap - TERM INT
   mkdir -p "$SNAPDIR" 2>/dev/null || true
@@ -285,10 +285,10 @@ echo "[$(ts)] cache snapshots on — a copy after every flush, kept ${SNAP_DAYS}
       last_seen="$mt"
       [ -e "$SNAPDIR/default.m3lib.pinned" ] || cp -p "$dest" "$SNAPDIR/default.m3lib.pinned"
       # Sweep — ONLY the dated name this loop writes.  .pinned never matches.
-      find "$SNAPDIR" -maxdepth 1 -type f \
-           -name 'default.m3lib.????-??-??_????' \
-           -mtime +"$SNAP_DAYS" -print -delete 2>/dev/null \
-        | while read -r old; do echo "[$(ts)] dropped old snapshot: $(basename "$old")"; done
+      ls -1 "$SNAPDIR" 2>/dev/null | grep -E '^default\.m3lib\.[0-9]{4}-[0-9]{2}-[0-9]{2}_[0-9]{4}$' \
+        | sort -r | tail -n +"$((SNAP_KEEP + 1))" | while read -r old; do
+            rm -f "$SNAPDIR/$old" && echo "[$(ts)] dropped old snapshot: $old"
+          done
     else
       rm -f "$dest.part" 2>/dev/null
       echo "[$(ts)] snapshot FAILED to write"
