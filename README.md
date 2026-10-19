@@ -150,6 +150,16 @@ Optional environment variables for the refresh service:
 | `RELOAD_URL`, `SERVER_PAGE`, `MIXER_COUNT` | URLs the service uses | local Server and Mixer |
 | `IDLE_POLL`, `IDLE_MIN`, `IDLE_MAX` | Waiting for the Server to become idle (seconds) | `2` / `5` / `900` |
 
+## Cache backups
+
+Whenever `default.m3lib` is written (a Lyrion export, Exit in the Mixer window), the container copies it to `cache-backups/` in the persist folder after it has been unchanged for 5 minutes. Only the newest 5 copies are kept, plus one pinned copy (`default.m3lib.pinned`) that is never deleted. Each copy is as large as your library, so keep this number low. To restore one: stop the container, copy it over `default.m3lib`, start the container.
+
+| Variable | Function | Default |
+|---|---|---|
+| `SNAP_ENABLE` | `0` turns cache backups off | `1` |
+| `SNAP_KEEP` | Number of dated copies to keep | `5` |
+| `SNAP_SETTLE` | Seconds the file must be unchanged before it is copied | `300` |
+
 ## Troubleshooting
 
 **Permission errors on volumes** — Make sure `PUID`/`PGID` match the owner of the mounted directories on the host.
