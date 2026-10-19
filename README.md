@@ -72,6 +72,8 @@ The refresh service (`refresh.py`, port `8199`):
 
 The Server page calls `/refresh-when-idle` by itself after **Add music**, **Refresh** and **Reload cache**, so the Mixer follows without extra steps.
 
+**Changes made in the Mixer window:** the Mixer only writes `default.m3lib` when it exits. Click **Exit** in the Mixer window when you are done: it saves the database, restarts by itself, and the Server picks up the new file afterwards. Changes that are not saved this way are lost when the refresh service restarts the Mixer (after Add music, Refresh or Reload cache).
+
 ## Using with Lyrion Music Server (LMS)
 
 Under Wine, MusicIP stores and returns paths in Windows format (`Z:\music\...`), while LMS expects `/music/...`. The plugin you use for mixing has to translate between the two (path conversion: MusicIP `Z:\music`, Lyrion `/music`).
@@ -146,7 +148,7 @@ Optional environment variables for the refresh service:
 
 **"Songs in Mixer" is unknown or lower than the Server's total for a while** — The Mixer restarts after Add music, Refresh or a changed library file, which normally takes 30–45 seconds (longer if a lot was added or removed). It catches up by itself, and the MIPster page follows along on its own.
 
-**The Server shows "Cache has been modified on disk"** — The library file changed outside the Server. The refresh service reloads it automatically after 10 seconds; the **Reload cache** button does the same immediately.
+**The Server shows "Cache has been modified on disk"** — The library file changed outside the Server. The refresh service reloads it automatically after 10 seconds; the **Reload cache** button does the same immediately. While the Mixer is restarting (30–45 seconds, for example after **Exit**), the library file is still in use and **Reload cache** does nothing; the notice stays until the Mixer has started, and then the Server reloads by itself.
 
 **Port conflict** — Change the host side of the port mapping, e.g. `-p 11003:10003`.
 
