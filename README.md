@@ -72,7 +72,17 @@ The refresh service (`refresh.py`, port `8199`):
 
 The Server page calls `/refresh-when-idle` by itself after **Add music**, **Refresh** and **Reload cache**, so the Mixer follows without extra steps.
 
-**Changes made in the Mixer window:** the Mixer only writes `default.m3lib` when it exits. Click **Exit** in the Mixer window when you are done: it saves the database, restarts by itself, and the Server picks up the new file afterwards. Changes that are not saved this way are lost when the refresh service restarts the Mixer (after Add music, Refresh or Reload cache).
+## Changes made in the Mixer window
+
+Changes you make in the Mixer window (noVNC, port `8989`) live in the Mixer's memory. The Mixer writes them to `default.m3lib` **only when it exits**, so nothing reaches the library file, the Server or the Server page until then.
+
+To save your changes:
+
+1. Click **Exit** in the Mixer window. It briefly shows that it is saving the database.
+2. The Mixer restarts by itself and loads the saved file (30-45 seconds).
+3. The refresh service sees the new file and reloads the Server after 10 seconds of quiet. The Server page may show "Cache has been modified on disk" for a short while; it clears by itself once the Mixer has started.
+
+Changes that are not saved this way are lost when the refresh service restarts the Mixer, which happens after **Add music**, **Refresh** or **Reload cache**. So click **Exit** when you are done with a change, before you start any of those actions.
 
 ## Using with Lyrion Music Server (LMS)
 
