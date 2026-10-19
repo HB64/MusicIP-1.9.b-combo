@@ -29,7 +29,7 @@ backups.
     log.txt          MusicIP's own log, emptied when it grows too large
     djs/             a dead MusicIP feature.  Remade at every start; no switch
                      stops it
-    cache-backups/   Contains backups of cache for 7 days. Saved every time
+    cache-backups/   Contains the newest 5 backups of the cache. Saved every time
                      cache is written to disk which happens only through
                      external command like a Lyrion data export or when you
                      manually save the library or exit the application in the
