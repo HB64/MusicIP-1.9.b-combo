@@ -43,8 +43,8 @@ CACHE SNAPSHOTS
 The library is only written to disk when something asks MusicIP to save it,
 which normally happens once a night, at the end of Lyrion's export. When that
 happens the container waits for the file to settle and takes a copy here,
-named for the date and time of that save. Copies older than seven days are
-deleted; one pinned copy is kept for ever. To restore one, stop the container,
+named for the date and time of that save. Only the newest 5 copies are kept;
+older ones are deleted; one pinned copy is kept for ever. To restore one, stop the container,
 copy it over default.m3lib, and start again.
 
 This exists for one reason: so that losing the cache never costs you a
