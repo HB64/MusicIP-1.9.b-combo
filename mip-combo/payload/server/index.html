@@ -752,8 +752,10 @@
   }
 
   /* ---------- live status ---------- */
+  const dots = v => v.replace(/(\d),(?=\d{3}\b)/g, '$1.');   // 37,704 -> 37.704
+  ['#st-total', '#st-mixable', '#st-todo'].forEach(id => { const e = $(id); if (e) e.textContent = dots(e.textContent.trim()); });
   function setStat(id, val) {
-    const el = $(id); val = (val || '').trim();
+    const el = $(id); val = dots((val || '').trim());
     if (el && val && el.textContent.trim() !== val) {
       el.textContent = val; el.classList.remove('flash'); void el.offsetWidth; el.classList.add('flash');
     }
