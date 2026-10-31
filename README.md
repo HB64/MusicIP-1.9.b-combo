@@ -176,6 +176,8 @@ Whenever `default.m3lib` is written (a Lyrion export, Exit in the Mixer window),
 
 **Rating / play count export reports errors for some tracks** — MusicIP 1.9.b does not handle non-ASCII characters in file paths (for example `ö`, `é`, `²`, `’` or Japanese names). For those tracks the Mixer answers but refuses to set Rating, PlayCount and LastPlayed, so an export from Lyrion ends with "Export finished with errors". Tracks with plain ASCII paths are not affected. This comes from MusicIP itself, not from this image; renaming files or fixing tags only helps sporadically.
 
+**A playlist called "Now Playing" shows up in Lyrion and fails to play** — "Now Playing" is a built-in MusicIP playlist, stored in `mip.m3usr` in the persist folder. It is filled whenever a mix is played in the Mixer window, and Lyrion lists it among its playlists after a rescan. Its tracks have Windows paths (`Z:\music\...`), so playing it in Lyrion fails with "Could not find handler" in the Lyrion log. Empty the list in the Mixer window (see "Changes made in the Mixer window" for saving with Exit) and do a full rescan in Lyrion (clear library and rescan): an empty list is no longer shown. Playing a mix in the Mixer window fills it again.
+
 ### ⚠️ MusicIP 1.9.b filter behaviour — stricter than 1.8
 
 MusicIP 1.9.b enforces stricter rules for filter conditions than 1.8. Filters that worked in 1.8 can silently fail in 1.9.b with `MUSICIP RETURNED NOTHING`. **Review all your filters in the MusicIP Mixer GUI after migrating from 1.8.**
