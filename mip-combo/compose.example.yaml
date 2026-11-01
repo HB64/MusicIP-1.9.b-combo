@@ -1,7 +1,7 @@
 # Example. Adjust the host paths (music and the persist folder) to your system.
 services:
   mip:
-    image: ghcr.io/OWNER/mip-combo:latest     # or: build: .
+    image: ghcr.io/hb64/mip-combo:latest     # or: build: .
     container_name: mip
     restart: unless-stopped
     stop_grace_period: 90s
