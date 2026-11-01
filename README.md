@@ -206,4 +206,6 @@ The Mixer part of this image is based on the work of **saysaar**: the Docker ima
 
 Added on top of it: the MusicIP Server on its own port (patched `MusicMagicServer.exe` with the higher mix limits, and a custom `index.html`), `refresh.py` (the refresh service and file watcher) and the combined setup.
 
+The MIT license (see `LICENSE`) covers what was added in this repository: `refresh.py`, the custom `index.html`, the workflow, the documentation and the changes to the scripts. The parts that come from saysaar's image are shared with his permission. The MusicIP programs and files in `mip_install_from_exe` and `payload` belong to their original authors and are not covered by it.
+
 MusicIP itself is the work of its original authors and is not affiliated with this project.
