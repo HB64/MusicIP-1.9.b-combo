@@ -1,6 +1,10 @@
 name: Publish image to GitHub Container Registry
 
 on:
+  push:
+    branches: [main, master]
+    paths:
+      - 'mip-combo/**'
   release:
     types: [published]
   workflow_dispatch:
