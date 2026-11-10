@@ -9,6 +9,9 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/Amsterdam
+      # Optional ready folder: already analysed music dropped there is moved to /music
+      # and added to the Server. Needs the extra volume below, and /music must be writable.
+      # - WATCH_READY=1
     ports:
       - "10002:10002"   # Mixer API (Power Search, mixes)
       - "10003:10003"   # Server (Add music, Refresh, Reload cache)
@@ -18,3 +21,4 @@ services:
       - /path/to/music:/music
       # Persist folder (holds default.m3lib, settings, recipes)
       - /path/to/mip-data:/home/mip/.wine/drive_c/users/mip/AppData/Roaming/MusicIP/MusicIP Mixer
+      # - /path/to/ready:/music-ready
