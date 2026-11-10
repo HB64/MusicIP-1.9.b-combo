@@ -160,6 +160,46 @@ Whenever `default.m3lib` is written (a Lyrion export, Exit in the Mixer window),
 | `SNAP_KEEP` | Number of dated copies to keep | `5` |
 | `SNAP_SETTLE` | Seconds the file must be unchanged before it is copied | `300` |
 
+## Ready folder (optional)
+
+For music that is already analysed elsewhere (for example on a Windows PC). Drop the files in a separate folder and the refresh service moves them into your music folder by itself, then has the Server add them, exactly like clicking **Add music**. It is off by default.
+
+How it works:
+
+1. The service checks the ready folder every 30 seconds. While files are still arriving or changing, it waits.
+2. After 5 minutes without any change, it moves every file to the music folder, keeping the sub-folders.
+3. Each file is first copied under a temporary `.part` name and its size is checked. Only then is it renamed and the original removed, so a half-copied file never shows up in your library. This also works when the two folders are on different disks.
+4. Empty sub-folders in the ready folder are removed. The ready folder itself stays.
+5. After the whole batch the Server is asked to add the music, and the Mixer follows once the Server is done.
+
+What it does not do:
+
+- It never overwrites. A file that already exists in the music folder stays in the ready folder and a line is written to the container log.
+- It does not analyse anything. Files that are not analysed yet are moved as well, and MusicIP will list them as still to do.
+- It does not start a Lyrion rescan. Lyrion finds the new files with its own rescan.
+- It needs write access to the music folder and the ready folder. Do not mount `/music` read-only.
+- Files starting with a dot and files ending in `.part` or `.tmp` are ignored.
+
+Add the ready folder as an extra volume and switch the feature on:
+
+```yaml
+    environment:
+      - WATCH_READY=1
+    volumes:
+      - /path/to/music:/music
+      - /path/to/ready:/music-ready
+```
+
+| Variable | Function | Default |
+|---|---|---|
+| `WATCH_READY` | `1` switches the ready folder on | `0` |
+| `READY_DIR` | Ready folder inside the container | `/music-ready` |
+| `MUSIC_DIR` | Music folder inside the container | `/music` |
+| `ADD_ROOT` | The music folder as MusicIP sees it (the Wine path) | `Z:\music` |
+| `READY_QUIET` | Seconds without changes before the files are moved | `300` |
+| `READY_POLL` | Seconds between checks | `30` |
+| `ADD_URL` | URL of the Server's Add music action | local Server |
+
 ## Troubleshooting
 
 **Permission errors on volumes** — Make sure `PUID`/`PGID` match the owner of the mounted directories on the host.
